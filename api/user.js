@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-02 14:34:02
- * @LastEditTime: 2019-04-16 11:27:56
+ * @LastEditTime: 2019-04-18 10:33:48
  */
 
 const Router = require('koa-router');
@@ -13,7 +13,7 @@ const bcrypt = require('bcryptjs');
 //秘钥
 const { secret } = require('../config/index');
 //校验权限
-const { getUserId,checkParams,checkPermise } = require('./utils/CheckPermise');
+const { getUserId,checkParams,checkPermise } = require('./utils/api_util');
 //状态码
 const code = require('./utils/statusCode');
 
@@ -22,9 +22,15 @@ const sendMail = require('./utils/mail');
 //引入封装好的redis
 const redisHelper = require('./utils/redis');
 
+//创建管理员
+const createAdmin = require('./utils/create_admin');
+
 
 //模型
 const {User} = require ('../dbs/models/index');
+
+//创建管理员
+createAdmin;
 
 
 const router = new Router({

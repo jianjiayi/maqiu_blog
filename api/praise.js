@@ -2,13 +2,13 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-11 16:29:50
- * @LastEditTime: 2019-04-12 13:50:19
+ * @LastEditTime: 2019-04-18 10:33:12
  */
 
 const Router = require('koa-router');
 
 // 工具
-const { getUserId,checkParams,checkPermise } = require('./utils/CheckPermise');
+const { getUserId,checkParams,checkPermise } = require('./utils/api_util');
 //状态码
 const code = require('./utils/statusCode');
 //模型

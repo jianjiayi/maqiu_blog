@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-02 14:34:02
- * @LastEditTime: 2019-04-18 10:33:48
+ * @LastEditTime: 2019-04-18 14:21:54
  */
 
 const Router = require('koa-router');
@@ -30,7 +30,7 @@ const createAdmin = require('./utils/create_admin');
 const {User} = require ('../dbs/models/index');
 
 //创建管理员
-createAdmin;
+//createAdmin;
 
 
 const router = new Router({

@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-02 14:24:01
- * @LastEditTime: 2019-04-12 16:05:33
+ * @LastEditTime: 2019-04-18 14:31:53
  */
 
 
@@ -17,6 +17,20 @@ const Content = Sequelize.import('./content.js');
 const Comment = Sequelize.import('./comment');
 const CommentReply = Sequelize.import('./comment_reply');
 const Praise = Sequelize.import('./praise');
+
+//将所有模型添加到数组
+const models = {
+    User,
+    ContentSort,
+    Content,
+    Comment,
+    CommentReply,
+    Praise,
+};
+//创建数据表
+for(let item in  models){
+    models[item].sync({force:false}); 
+}
 
 
 //用户与分类:1对多关系
@@ -41,19 +55,5 @@ Praise.belongsTo(User,{foreignKey:'userId',as:'praiseUserInfo'});
 Comment.hasOne(Praise, {foreignKey:'typeId', targetKey:'id', as:'ownPraise'});
 //回复评论与点赞:1对1关系
 CommentReply.hasOne(Praise, {foreignKey:'typeId', targetKey:'id', as:'ownPraise'});
-
-//将所有模型添加到数组
-const models = {
-    User,
-    ContentSort,
-    Content,
-    Comment,
-    CommentReply,
-    Praise,
-};
-//创建数据表
-for(let item in  models){
-    models[item].sync({force:false}); 
-}
 
 module.exports = models;

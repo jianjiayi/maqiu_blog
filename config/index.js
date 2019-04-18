@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-15 15:47:37
- * @LastEditTime: 2019-04-18 15:40:13
+ * @LastEditTime: 2019-04-18 15:55:02
  */
 
 //超级管理员信息
@@ -11,7 +11,7 @@ let adminConfig = {
     password:'jian123321',
     email:'13121378101@163.com',
     roles_id:1,
-    nickname:'2222222222'
+    nickname:'@admin'
 }
 
 //数据库配置

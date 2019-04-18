@@ -2,11 +2,11 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-15 15:47:37
- * @LastEditTime: 2019-04-18 13:59:14
+ * @LastEditTime: 2019-04-18 15:30:04
  */
 
 //超级管理员信息
-const adminConfig = {
+let adminConfig = {
     username: 'admin',
     password:'jian123321',
     email:'13121378101@163.com',

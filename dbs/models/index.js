@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-02 14:24:01
- * @LastEditTime: 2019-04-18 15:17:58
+ * @LastEditTime: 2019-04-18 15:28:06
  */
 
 
@@ -24,7 +24,6 @@ ContentSort.belongsTo(User,{foreignKey:'createUserId',as:'createUserInfo'});
 //分类与文章:1对多关联
 Content.belongsTo(ContentSort,{foreignKey:'contentSortId',as:'contentSortInfo'});
 //用户与文章:1对多关联
-// Content.belongsTo(User,{foreignKey:'createUserId',as:'createUserInfo'});
 Content.belongsTo(User,{foreignKey:'createUserId',as:'createUserInfo'});
 //用户与评论:1对多关系
 Comment.belongsTo(User,{foreignKey:'formUid',as:'formUser'});

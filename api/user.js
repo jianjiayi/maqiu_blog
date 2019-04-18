@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-02 14:34:02
- * @LastEditTime: 2019-04-18 15:04:45
+ * @LastEditTime: 2019-04-18 15:31:05
  */
 
 const Router = require('koa-router');
@@ -23,14 +23,14 @@ const sendMail = require('./utils/mail');
 const redisHelper = require('./utils/redis');
 
 //创建管理员
-// const createAdmin = require('./utils/create_admin');
+const createAdmin = require('./utils/create_admin');
 
 
 //模型
 const {User} = require ('../dbs/models/index');
 
 //创建管理员
-//createAdmin;
+createAdmin;
 
 
 const router = new Router({

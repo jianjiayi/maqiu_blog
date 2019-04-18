@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-02 14:14:03
- * @LastEditTime: 2019-04-18 13:30:40
+ * @LastEditTime: 2019-04-18 15:11:56
  */
 
 const Sequelize = require('sequelize');

@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-02 14:29:38
- * @LastEditTime: 2019-04-11 10:25:40
+ * @LastEditTime: 2019-04-18 15:38:14
  */
 
 const moment = require('moment');
@@ -29,7 +29,7 @@ module.exports = function(sequelize,DataTypes){
             comment:'密码'
         },
         nickname:{
-            type:DataTypes.STRING(32),
+            type:DataTypes.STRING(1000),
             allowNull:true,
             comment:'昵称'
         },

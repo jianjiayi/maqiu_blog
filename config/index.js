@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-15 15:47:37
- * @LastEditTime: 2019-04-18 13:30:15
+ * @LastEditTime: 2019-04-18 13:59:14
  */
 
 //超级管理员信息
@@ -11,7 +11,7 @@ const adminConfig = {
     password:'jian123321',
     email:'13121378101@163.com',
     roles_id:1,
-    nickname:'@'+'麻球科技'
+    nickname:'@麻球科技'
 }
 
 //数据库配置

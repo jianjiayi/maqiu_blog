@@ -2,8 +2,26 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-15 15:47:37
- * @LastEditTime: 2019-04-16 15:21:51
+ * @LastEditTime: 2019-04-18 13:30:15
  */
+
+//超级管理员信息
+const adminConfig = {
+    username: 'admin',
+    password:'jian123321',
+    email:'13121378101@163.com',
+    roles_id:1,
+    nickname:'@'+'麻球科技'
+}
+
+//数据库配置
+const dbConfig = {
+    database:'maqiu',
+    username:'root',
+    password:'@Jian123321',
+    host:'localhost',
+    dialect:'mysql'
+}
 
 //秘钥配置
 const secret = {
@@ -39,6 +57,8 @@ const redisConfig = {
 
 
 module.exports = {
+    adminConfig,
+    dbConfig,
     secret,
     qiniuConfig,
     redisConfig,

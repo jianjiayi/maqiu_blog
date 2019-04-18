@@ -2,18 +2,14 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-02 14:14:03
- * @LastEditTime: 2019-04-03 14:13:30
+ * @LastEditTime: 2019-04-18 13:30:40
  */
 
 const Sequelize = require('sequelize');
-//数据库基本信息
-const dbConfig = {
-    database:'maqiu',
-    username:'root',
-    password:'@Jian123321',
-    host:'localhost',
-    dialect:'mysql'
-}
+
+//数据库配置信息
+const { dbConfig } = require('../config/index');
+
 //建立数据库连接
 const sequelize = new Sequelize(dbConfig.database,dbConfig.username,dbConfig.password,{
     host:dbConfig.host,

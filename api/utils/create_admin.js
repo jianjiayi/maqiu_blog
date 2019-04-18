@@ -2,7 +2,7 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-17 17:01:56
- * @LastEditTime: 2019-04-18 13:29:23
+ * @LastEditTime: 2019-04-18 15:35:54
  */
 
 //加密工具
@@ -33,8 +33,7 @@ const createAdmin =  async()=>{
             username: adminConfig.username,
             password:adminConfig.password,
             email:adminConfig.email,
-            roles_id:adminConfig.roles_id,
-            nickname:adminConfig.nickname
+            roles_id:1,
         });
     }
 }

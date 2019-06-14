@@ -67,9 +67,9 @@ router.post('/code',async(ctx,next)=>{
     //发送邮件内容
     let mailOptions = {
         to: params.toMail, // list of receivers
-        subject: '验证码', // Subject line
+        subject: '【麻球科技】邮箱验证码通知', // Subject line
         text: '验证码:'+ codeNum, // plain text body
-        html: '<p>您的验证码是:'+ codeNum+',请勿告诉他人,半小时内有效</p>' // html body
+        html: '<p>您的验证码是:'+ codeNum+',请勿告诉他人,30分钟内有效</p>' // html body
     };
 
     //发送邮箱

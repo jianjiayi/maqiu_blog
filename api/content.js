@@ -51,6 +51,10 @@ router.post('/create',async(ctx,next)=>{
     // 检测参数是否存在为空
     if(!checkParams(ctx,params)) return;
 
+    //校验是否有相关权限
+    const is_admin = await checkPermise(ctx);
+    if (!is_admin) return;
+
     const user = await getUserId(ctx);
     const userId = user.id;
 
@@ -58,7 +62,6 @@ router.post('/create',async(ctx,next)=>{
     const eSort = await ContentSort.findOne({
         where:{
             id:params.contentSortId,
-            createUserId:userId
         }
     })
     if(!eSort){
@@ -66,16 +69,6 @@ router.post('/create',async(ctx,next)=>{
         ctx.body = code.ERROR_412('该分类id不存在，请先创建分类');
         return;
     }
-
-    const getimgsrc=(htmlstr)=>{  
-        var reg = /<img.+?src=('|")?([^'"]+)('|")?(?:\s+|>)/gim;  
-        var imgsrcArr = [];  
-        while (tem = reg.exec(htmlstr)) {  
-            imgsrcArr.push(tem[2]);  
-        }  
-        return imgsrcArr.join(',');  
-    }
-    pics += getimgsrc(content);
 
     try{
         //创建文章获取刚创建文章的id
@@ -94,6 +87,8 @@ router.post('/create',async(ctx,next)=>{
             description:description,//描述
             keywords:keywords,//关键词
 
+            pageviews:100 + Math.floor(Math.random() * 40),//浏览量
+
             createUserId:userId,//创建者
         })
 
@@ -107,7 +102,7 @@ router.post('/create',async(ctx,next)=>{
 });
 
 /**
- * @name: 修改详情状态
+ * @name: 修改文章状态
  * @param {type} 
  * @returns: 
  */
@@ -123,16 +118,17 @@ router.post('/modifyState',async(ctx,next)=>{
     }
     // 检测参数是否存在为空
     if(!checkParams(ctx,params)) return;
-    //获取用户登录信息
-    const user = await getUserId(ctx);
+
+    //校验是否有相关权限
+    const is_admin = await checkPermise(ctx);
+    if (!is_admin) return;
 
     try{
         await Content.update({
             status:params.status,
         },{
             where:{
-                id:id,
-                createUserId:user.id,
+                id:id
             }
         });
         
@@ -142,6 +138,55 @@ router.post('/modifyState',async(ctx,next)=>{
         }else if(status==1){
             ctx.response.status = 200;
             ctx.body = code.SUCCESS_200('操作上架成功');
+        }else{
+            ctx.response.status = 200;
+            ctx.body = code.SUCCESS_200('其他操作成功');
+        }
+    }catch(err){
+        ctx.response.status = 412;
+        ctx.body = code.ERROR_412('状态修改失败');
+    }
+});
+
+
+
+/**
+ * @name: 修改文章置顶状态
+ * @param {type} 
+ * @returns: 
+ */
+router.post('/isTopStatus',async(ctx,next)=>{
+    const {
+        id,
+        status,
+    } = ctx.request.body;
+
+    let params = {
+        id,
+        status
+    }
+    // 检测参数是否存在为空
+    if(!checkParams(ctx,params)) return;
+
+    //校验是否有相关权限
+    const is_admin = await checkPermise(ctx);
+    if (!is_admin) return;
+
+    try{
+        await Content.update({
+            istop:params.status,
+        },{
+            where:{
+                id:id,
+            }
+        });
+        
+        if(status==0){
+            ctx.response.status = 200;
+            ctx.body = code.SUCCESS_200('置顶成功');
+        }else if(status==1){
+            ctx.response.status = 200;
+            ctx.body = code.SUCCESS_200('取消置顶成功');
         }else{
             ctx.response.status = 200;
             ctx.body = code.SUCCESS_200('其他操作成功');
@@ -186,18 +231,10 @@ router.post('/update',async(ctx,next)=>{
     // 检测参数是否存在为空
     if(!checkParams(ctx,params)) return;
 
-    const user = await getUserId(ctx);
-    const userId = user.id;
+    //校验是否有相关权限
+    const is_admin = await checkPermise(ctx);
+    if (!is_admin) return;
 
-    const getimgsrc=(htmlstr)=>{  
-        var reg = /<img.+?src=('|")?([^'"]+)('|")?(?:\s+|>)/gim;  
-        var imgsrcArr = [];  
-        while (tem = reg.exec(htmlstr)) {  
-            imgsrcArr.push(tem[2]);  
-        }  
-        return imgsrcArr.join(',');  
-    }
-    pics += getimgsrc(content);
 
     try{
         await Content.update({
@@ -218,7 +255,6 @@ router.post('/update',async(ctx,next)=>{
         },{
             where:{
                 id:params.id,
-                createUserId:userId
             }
         });
         
@@ -230,8 +266,10 @@ router.post('/update',async(ctx,next)=>{
     }
 });
 
+
+
 /**
- * @name: 获取列表
+ * @name: 获取所有文章列表
  * @param {type} //page要查询页数，先判断是否为管理员，若为管理员则查询所有文章，否则判断
  * userId是否为空，若为空，查询自己文正列表，否则查询userid文章列表
  * @returns: 
@@ -275,11 +313,18 @@ router.post('/list',async(ctx,next)=>{
             limit:10,//每页10条
             offset:(page -1)*10,
             where:whereObj,
-            attributes:['title','subtitle','author','release_date','pics'],
+            // attributes:['title','subtitle','author','release_date','pics'],
             'order':[
+                ['istop','DESC'],
                 ['id','DESC']
             ],
             include:[
+                {//分类信息
+                    model:ContentSort,
+                    as:'contentSortInfo',
+                    attributes:['id','name','pcode'],
+                    required: false,
+                },
                 {//创建者信息
                     model:User,
                     as:'createUserInfo',

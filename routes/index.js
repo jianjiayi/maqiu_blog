@@ -8,6 +8,10 @@
 
 //user接口
 const user = require('../api/user');
+//角色接口
+const role = require('../api/role');
+//权限接口
+const resource = require('../api/resource');
 //分类接口
 const contentSort = require('../api/content_sort');
 //文章接口
@@ -22,15 +26,32 @@ const praise = require('../api/praise');
 const upload = require('../api/upload');
 //发送邮件接口
 const sendMail = require('../api/send_mail');
+//友情链接接口
+const link = require('../api/link');
+//轮播图接口
+const banner = require('../api/banner');
+//站点信息接口
+const site = require('../api/site');
+//公司信息接口
+const company = require('../api/company');
+//公告信息接口
+const message = require('../api/message');
 
 module.exports = [
   user,
+  role,
+  resource,
   contentSort,
   content,
   comment,
   commentReply,
   praise,
   upload,
-  sendMail
+  sendMail,
+  link,
+  banner,
+  site,
+  company,
+  message
 ]
-  
+

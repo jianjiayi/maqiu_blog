@@ -21,6 +21,8 @@ const jwtUnless = jwt({secret: secret.sign}).unless({
         /^\/user\/forget\/*/,
         // 忘记密码-修改密码
         /^\/user\/forget\/*/,
+        //分类列表
+        /^\/sort\/list/,
         //文章详情
         /^\/content\/detail/,
         //文章列表
@@ -34,6 +36,18 @@ const jwtUnless = jwt({secret: secret.sign}).unless({
         /^\/upload\/file/,
         //邮箱发送验证吗
         /^\/sendMail\/*/,
+        //获取友情链接列表
+        /^\/link\/list/,
+        //获取公告列表
+        /^\/message\/list/,
+        //公告详情
+        /^\/message\/detail/,
+        //获取幻灯片列表
+        /^\/banner\/list/,
+        //站点信息
+        /^\/site\/list/,
+        //公司信息
+        /^\/company\/list/,
     ]
 });
 

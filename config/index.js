@@ -2,16 +2,18 @@
  * @Author: big bug
  * @Email: 13121378101@163.com
  * @Date: 2019-04-15 15:47:37
- * @LastEditTime: 2019-04-18 15:55:02
+ * @LastEditTime: 2019-04-19 11:18:34
  */
+
 
 //超级管理员信息
 let adminConfig = {
     username: 'admin',
-    password:'jian123321',
+    password:'2ce1cf5cc9c93d4b6060454b2f4719cf',//密码：md5(maqiu123321)
     email:'13121378101@163.com',
-    roles_id:1,
-    nickname:'@admin'
+    roles_id:0,
+    nickname:'@admin',
+    head_img:'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
 }
 
 //数据库配置
@@ -38,14 +40,14 @@ const qiniuConfig = {
 
 //发送邮件配置
 const emailConfig = {
-    host: 'smtp.qq.com',
+    host: 'smtp.163.com',//qq邮箱：smtp.qq.com；163邮箱：smtp.163.com
     secureConnection: true, // 使用了 SSL
     secure: true, // true for 465, false for other ports
     auth: {
-        user: '1248883899@qq.com', // generated ethereal user
-        pass: 'cglivjeijbsubafh'  // generated ethereal password
+        user: '13121378101@163.com', // 发送邮箱qq账号:1248883899@qq.com;163账号：13121378101@163.com
+        pass: 'maqiu123321'  // 授权码   这个不是密码，是申请下来的
     },
-    from:'麻球科技<1248883899@qq.com>'
+    from:'麻球科技<13121378101@163.com>'
 }
 
 //redis配置

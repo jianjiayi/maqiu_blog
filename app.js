@@ -19,10 +19,12 @@ onerror(app)
 
 //跨域
 app.use(cors());
-//token 验证失败的时候会抛出401错误，因此需要添加错误处理
+// token 验证失败的时候会抛出401错误，因此需要添加错误处理
 app.use(tokenError);
 // 此接口列表，过滤不用jwt验证
 app.use(jwtUnless);
+
+//接口鉴权
 
 // middlewares
 app.use(bodyparser({

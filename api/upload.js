@@ -100,7 +100,7 @@ router.post('/file',upload.single('file'),async(ctx,next)=>{
   
   ctx.response.status = 200;
   ctx.body = code.SUCCESS_200('上传成功',{
-    imgUrl: 'http://pq1h3agkl.bkt.clouddn.com/'+qiniu.key  //返回文件名 
+    imgUrl: 'http://xiaopiqiu.online/'+qiniu.key  //返回文件名 
   });
 
 });

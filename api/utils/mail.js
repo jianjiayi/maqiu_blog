@@ -29,10 +29,9 @@ const sendMail = (mailOptions)=>{
         html: mailOptions.html // html body
     }, (error, info) => {
         if (error) {
-            
-            return console.log(error);
+            console.log(error);
         }
-        console.log('Message sent: %s', info.messageId);
+        console.log('Message sent: %s', info);
         // Message sent: <04ec7731-cc68-1ef6-303c-61b0f796b78f@qq.com>
     });
 }

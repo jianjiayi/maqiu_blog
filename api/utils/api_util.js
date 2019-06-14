@@ -32,8 +32,8 @@ const checkPermise = async(ctx)=>{
         //解密
         const payload = await verify(token.split(' ')[1], secret.sign);
         // console.log(payload)
-        // role==1为管理员；role==0为普通用户
-        if(payload.roles != 1){
+        // role==1为管理员；role==0超级管理员； role==2为普通用户
+        if(payload.roles == 2){
             ctx.response.status = 403;
             ctx.body = code.ERROR_403('您没有相关权限');
             return false;
@@ -62,7 +62,6 @@ const getUserId = async(ctx) =>{
     //解密
     try{//登录用户
         const payload = await verify(token.split(' ')[1], secret.sign);
-    
         return payload;
     }catch(err){//游客
         return false;

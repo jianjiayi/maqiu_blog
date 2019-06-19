@@ -18,9 +18,9 @@ let adminConfig = {
 
 //数据库配置
 const dbConfig = {
-    database:'maqiu',
+    database:'dwkjCMS',//maqiu
     username:'root',
-    password:'@Jian123321',
+    password:'mysqldwkj2017',//@Jian123321
     host:'localhost',
     dialect:'mysql'
 }

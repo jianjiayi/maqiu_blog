@@ -277,17 +277,13 @@ router.post('/update',async(ctx,next)=>{
 router.post('/list',async(ctx,next)=>{
     let {
         page = 1,
-        userId,//为空就是获取自己发布的用户列表，否则获取其他人的文章列表
         contentSortId,//scode不传或者为空，查询所有分类下的，否则查询该分类下的
-        status,//status不传穿或者为空，查询所有状态下的；当userid!=''&&不是管理员，时只查询status==1的状态文章列表
     } = ctx.request.body;
 
 
 
     //查询条件
     let whereObj = {};
-    //添加查询状态
-    (status === '' || status === undefined) ? '' : (whereObj.status = status);
     //添加查询分类
     (contentSortId ==='' || contentSortId === undefined) ? '' : (whereObj.contentSortId = contentSortId);
 
@@ -295,17 +291,9 @@ router.post('/list',async(ctx,next)=>{
     const is_admin = await checkPermise(ctx);
     //不是管理员
     if(!is_admin){
-        //获取用户登录信息
-        const user = await getUserId(ctx);
-        const user_id = user.id;
-
-        if(userId != '' && userId != undefined){//查询其他人的文章
-
-            whereObj.createUserId = userId;
-            if(userId != user_id){
-                whereObj.status = 1
-            }
-        }
+        whereObj.status = 1
+    }else{
+        whereObj.status = [0,1]
     }
 
     try{

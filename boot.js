@@ -384,7 +384,7 @@ const resourceList = [
     //------------------------网站留言
     {
         code:'44',
-        name:'系统公告',
+        name:'网站留言',
         icon:'',
         path:'/notify/websiteMessage',
         type:'view',

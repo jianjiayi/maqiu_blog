@@ -240,7 +240,7 @@ router.post('/setSorting', async (ctx, next) => {
 router.post('/list',async(ctx,next)=>{
     let {
         page = 1,
-        gid = 0,
+        gid = [0,1,2],
         status = [0,1]
     } = ctx.request.body;
     

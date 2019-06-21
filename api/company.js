@@ -163,7 +163,7 @@ router.post('/update',async(ctx,next)=>{
 
 
 /**
- * @name: 获取站点信息
+ * @name: 获取公司
  * @param {type} 
  * @returns: 
  */
